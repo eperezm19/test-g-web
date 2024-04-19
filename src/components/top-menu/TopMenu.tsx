@@ -2,9 +2,10 @@
 import { titleFont } from "@/config/fonts";
 
 import Link from "next/link";
-import React, { SVGProps } from "react";
+import React, { SVGProps, useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ShoppingBagIcon } from "@heroicons/react/24/outline";
+import { useCartStore } from "@/store/cart-store";
 
 interface NavigationItem {
   label: string;
@@ -23,6 +24,13 @@ const navigation: NavigationItem[] = [
 ];
 
 export const TopMenu = () => {
+  const totalItemsInCart = useCartStore((state) => state.getTotalItems());
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
   return (
     <div className="flex px-5 py-4 justify-between items-center w-full bg-black">
       {/* Logo */}
@@ -51,8 +59,17 @@ export const TopMenu = () => {
       </ul>
       {/* Search, Cart, Menu */}
       <div className="flex items-center">
-        <Button variant="ghost" className="text-slate-100">
-          <ShoppingBagIcon className="w-6 h-6" />
+        <Button asChild variant="ghost" className="text-slate-100">
+          <Link href={totalItemsInCart === 0 && loaded ? "/empty" : "/cart"}>
+            <div className="relative">
+              {loaded && totalItemsInCart > 0 && (
+                <span className="fade-in absolute text-xs px-1 rounded-full font-bold -top-2 -right-2 bg-blue-700 text-white">
+                  {totalItemsInCart}
+                </span>
+              )}
+              <ShoppingBagIcon className="w-6 h-6" />
+            </div>
+          </Link>
         </Button>
       </div>
     </div>

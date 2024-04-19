@@ -4,10 +4,18 @@ interface Props {
   };
 }
 
-import { AddToCart } from "@/product/add-to-cart/AddToCart";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import { AddToCart } from "@/product/components/add-to-cart/AddToCart";
 import { Product } from "@/products/interfaces/product.interfaces";
 import { initialData } from "@/seed/seed";
 import { CheckIcon } from "@heroicons/react/24/outline";
+import Link from "next/link";
 
 const products = initialData.products;
 
@@ -18,6 +26,16 @@ export default function ProductPage({ params }: Props) {
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:grid lg:max-w-7xl lg:grid-cols-2 lg:gap-x-8 lg:px-8">
         {/* Product details */}
         <div className="lg:max-w-lg lg:self-end">
+          <Breadcrumb className="mb-8">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/">Productos</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+            </BreadcrumbList>
+          </Breadcrumb>
           <div className="mt-4">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               {product?.name}
