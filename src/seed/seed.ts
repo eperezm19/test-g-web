@@ -12,7 +12,7 @@ export const initialData: SeedData = {
       description: "Crustáceo de cuerpo largo y delgado",
       stockInPounds: "15",
       pricePerPound: "10.99",
-      imgUrl: "camaron.jpeg",
+      imgUrl: "langostino.jpeg",
     },
     {
       name: "Pulpo",
@@ -20,7 +20,7 @@ export const initialData: SeedData = {
       description: "Molusco de cuerpo blando y tentáculos",
       stockInPounds: "8",
       pricePerPound: "15.99",
-      imgUrl: "pulpo.jpeg",
+      imgUrl: "gamba.jpeg",
     },
     {
       name: "Calamar",
