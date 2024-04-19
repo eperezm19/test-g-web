@@ -11,6 +11,7 @@ interface State {
     total: number;
     itemsInCart: number;
   };
+  removeProduct: (product: CartProduct) => void;
 }
 
 export const useCartStore = create<State>()(
@@ -57,6 +58,16 @@ export const useCartStore = create<State>()(
             }
             const newCart = [...state.cart];
             newCart[productIndex].quantity = product.quantity;
+            return {
+              cart: newCart,
+            };
+          });
+        },
+        removeProduct: (product) => {
+          set((state) => {
+            const newCart = state.cart.filter(
+              (cartProduct) => cartProduct.id !== product.id
+            );
             return {
               cart: newCart,
             };

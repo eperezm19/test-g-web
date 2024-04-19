@@ -15,11 +15,11 @@ interface NavigationItem {
 const navigation: NavigationItem[] = [
   {
     label: "Individual",
-    link: "/category/individual",
+    link: "/",
   },
   {
     label: "Combos",
-    link: "/category/combos",
+    link: "/",
   },
 ];
 
